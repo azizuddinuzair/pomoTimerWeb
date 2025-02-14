@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beautiful Weekly Planner with Pomodoro Timer</title>
+  <link rel="stylesheet" href="pomoTimerStyle.css">
+</head>
+<body>
+  <!-- Sidebar for Pomodoro Timer -->
+  <div class="sidebar">
+
+    <h2>Pomodoro Timer</h2>
+
+    <button id="pomodoroButton">Start Timer</button>
+    
+    <div class="rose-animation">
+      
+      <div class="flower__stem"></div> <!-- Add the stem here -->
+      <div class="flower__leafs flower__leafs--1">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__leaf flower__leaf--5"></div>
+          <div class="flower__leaf flower__leaf--6"></div>
+          <div class="flower__leaf flower__leaf--7"></div>
+          <div class="flower__leaf flower__leaf--8"></div>
+          <div class="flower__white-circle"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Main content for Calendar -->
+  <div class="main-content">
+    <header>
+      <h1>Weekly Planner</h1>
+    </header>
+
+    <!-- Calendar Section -->
+    <section class="calendar">
+      <div class="week">
+        <!-- Day Row (Monday example) -->
+        <div class="day" id="monday">
+          <h3>Monday</h3>
+          <button class="toggle-tasks">Show Tasks</button>
+          <ul class="tasks">
+            <li contenteditable="true">
+              Task 1
+              <p class="description" contenteditable="true">Description...</p>
+            </li>
+            <li contenteditable="true">
+              Task 2
+              <p class="description" contenteditable="true">Description...</p>
+            </li>
+          </ul>
+          <button class="add-task">Add Task</button>
+        </div>
+        <!-- Repeat for other days... -->
+        <div class="day" id="tuesday">
+          <h3>Tuesday</h3>
+          <button class="toggle-tasks">Show Tasks</button>
+          <ul class="tasks">
+            <li contenteditable="true">Task 1
+              <p class="description" contenteditable="true">Description...</p>
+            </li>
+          </ul>
+          <button class="add-task">Add Task</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Pomodoro Timer Modal -->
+  <div id="pomodoroModal" class="modal">
+    <div class="modal-content">
+      <h2>Pomodoro Timer</h2>
+      <div id="timer">
+        <span id="minutes">25</span>:<span id="seconds">00</span>
+      </div>
+      <button id="start">Start</button>
+      <button id="reset">Reset</button>
+    </div>
+  </div>
+
+  <script src="pomoTimerScript.js"></script>
+</body>
+</html>

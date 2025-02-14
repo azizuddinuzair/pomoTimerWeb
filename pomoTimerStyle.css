@@ -1,0 +1,292 @@
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Comic Sans MS', sans-serif; /* Happier font for body */
+    background-color: #f9e3e3; /* Light pinkish background */
+    color: #333;
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #2e2e2e; /* Blackish-gray for sidebar */
+    color: white;
+    padding: 20px;
+    width: 200px;
+    height: 100vh;
+}
+
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar button {
+    width: 100%;
+    padding: 10px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* Main content area */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Dancing Script', cursive; /* Cursive font for title */
+}
+
+.calendar {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.day {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    margin-bottom: 20px;
+    font-family: 'Dancing Script', cursive; /* Cursive font for days */
+}
+
+.day h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.tasks {
+    display: none;
+    margin-top: 10px;
+}
+
+.add-task {
+    margin-top: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.description {
+    font-size: 0.9em;
+    color: gray;
+    margin-left: 10px;
+}
+
+.toggle-tasks {
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+/* Modal for Pomodoro Timer */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Blackout background */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+#timer {
+    font-size: 64px;
+    margin: 20px 0;
+    font-family: 'Digital-7', sans-serif; /* Digital Clock Font for timer */
+    font-weight: bold;
+}
+  
+  /* Animation for the rose */
+.rose-animation {
+    display: flex;
+    justify-content: center; /* Center the flower horizontally within the sidebar */
+    margin: 20px 0; /* Add margin for spacing */
+    margin-left: -10px;
+    position: relative; /* Allow for absolute positioning of flower parts */
+}
+/* Animation for the flower's swaying motion */
+@keyframes moving-flower-1 { 
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(10deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Unified keyframes for blooming leaves */
+@keyframes blooming-leaf {
+    0% { transform: scale(0) translate(-50%, -100%) rotate(0deg); }
+    80% { transform: scale(1.1) translate(-50%, -100%) rotate(var(--rotate-end)); }
+    100% { transform: scale(1) translate(-50%, -100%) rotate(var(--rotate-end)); }
+}
+
+/* Keyframes for blooming stem */
+@keyframes blooming-stem {
+    0% { height: 0; }
+    100% { height: 50px; }
+}
+
+/* Keyframes for blooming center */
+@keyframes blooming-center {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+/* Color change animation */
+@keyframes color-change {
+    0%, 100% { background-color: rgb(180, 50, 50); }
+    25% { background-color: rgb(255, 165, 0); }
+    50% { background-color: rgb(54, 58, 194); }
+    75% { background-color: rgb(205, 44, 117); }
+}
+
+
+
+/* Flower container */
+.flower__leafs--1 {
+    position: relative;
+    width: 100px; /* Size of the flower container */
+    height: 100px; /* Size of the flower container */
+    animation: moving-flower-1 4s linear infinite; /* Swaying motion */
+}
+
+/* Flower leaves */
+.flower__leaf {
+    position: absolute;
+    width: 10px;
+    height: 30px;
+    background-color: red;
+    border-radius: 50% 50% 0 0;
+    transform-origin: bottom center; /* BottomCenter for rotation */
+    animation: blooming-leaf 1.6s forwards, color-change 5s infinite; /* Use the new keyframe */
+}
+
+/* Individual leaf positions and animations */
+.flower__leaf--1 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%) rotate(0deg);
+    --rotate-end: 45deg;
+    animation-delay: 0s;
+    background-color: #e57373;
+} 
+
+.flower__leaf--2 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%) rotate(45deg);
+    --rotate-end: 90deg;
+    animation-delay: 0.1s;
+    background-color: #f06292;
+}
+
+.flower__leaf--3 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%) rotate(90deg);
+    --rotate-end: 135deg;
+    animation-delay: 0.2s;
+    background-color: #ec407a;
+}
+
+.flower__leaf--4 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%) rotate(135deg);
+    --rotate-end: 180deg;
+    animation-delay: 0.3s;
+    background-color: #d81b60;
+}
+
+.flower__leaf--5 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%) rotate(180deg);
+    --rotate-end: 225deg;
+    animation-delay: 0.4s;
+    background-color: #c2185b;
+}
+
+.flower__leaf--6 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%) rotate(225deg);
+    --rotate-end: 270deg;
+    animation-delay: 0.5s;
+    background-color: #ad1457;
+}
+
+.flower__leaf--7 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%) rotate(270deg);
+    --rotate-end: 315deg;
+    animation-delay: 0.6s;
+    background-color: #880e4f;
+}
+
+.flower__leaf--8 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%) rotate(315deg);
+    --rotate-end: 360deg;
+    animation-delay: 0.7s;
+    background-color: #6a1b9a;
+}
+
+/* Flower center */
+.flower__white-circle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    top: 40%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    animation: blooming-center 1.6s forwards; /* Apply the blooming animation */  
+}
+
+/* Flower stem */
+.flower__stem {
+    position: absolute;
+    width: 5px;
+    height: 0; /* Start with height 0 */
+    background-color: green;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: blooming-stem 1.6s forwards; /* Apply the animation */
+    z-index: 0; /* Ensure the stem is behind the petals */
+}

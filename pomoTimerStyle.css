@@ -290,3 +290,26 @@ header {
     animation: blooming-stem 1.6s forwards; /* Apply the animation */
     z-index: 0; /* Ensure the stem is behind the petals */
 }
+
+.add-list {
+    /* size of the circle */
+  --btn-size: 48px;
+
+  width: var(--btn-size);
+  height: var(--btn-size);
+
+  /* make it round */
+  border-radius: 50%;
+  border: none;
+  background-color: #28a745;
+  color: #ff0000;
+
+  /* center the “+” */
+  font-size: calc(var(--btn-size) / 2);
+  line-height: var(--btn-size);
+  text-align: center;
+
+  /* add a little depth */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+}

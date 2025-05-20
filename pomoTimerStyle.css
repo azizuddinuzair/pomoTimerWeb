@@ -328,16 +328,38 @@ header {
 }
 .week {
   display: grid;
-
-  /* Define exactly 4 rows, each auto-sized by its content */
-  grid-template-rows: repeat(4, auto);
-
-  /* Place items column-by-column, then create new columns as needed */
-  grid-auto-flow: column;
-
-  /* Make each column at least 200px wide (or whatever your .day width is) */
-  grid-auto-columns: 200px;
-
-  /* Gutter between rows & columns */
+  grid-template-columns: repeat(7, 1fr); /* 7 columns for days */
+  grid-template-rows: repeat(5, auto);   /* 1 header + 4 weeks */
   gap: 20px;
+}
+
+.task-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.task-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.task-checkbox {
+  margin-right: 8px;
+}
+
+.task-title {
+  font-weight: bold;
+  margin-bottom: 0;
+  outline: none;
+}
+
+.description {
+  font-size: 0.9em;
+  color: gray;
+  margin-left: 28px; /* aligns with title text after checkbox */
+  margin-top: 2px;   /* less space between title and description */
+  outline: none;
 }

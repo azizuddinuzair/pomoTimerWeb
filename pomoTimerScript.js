@@ -104,3 +104,43 @@ addList.forEach(button => {
     taskList.appendChild(newTask);
   });
 });
+
+function createNewList() {
+  // 3.1. Find the container where all your days live:
+  const weekContainer = document.querySelector('.week');
+
+  // 3.2. Create a new <div class="day">...</div>
+  const newDay = document.createElement('div');
+  newDay.classList.add('day');
+  // Optionally give it a unique ID or data-attribute if you need to reference it later:
+  newDay.id = 'list'; 
+
+  // 3.3. Fill it with the same HTML you use for Monday/Tuesday
+  newDay.innerHTML = `
+    <h3>List</h3>
+    <button class="toggle-tasks">Show Tasks</button>
+    <ul class="tasks"></ul>
+    <button class="add-task">Add Task</button>
+  `;
+
+  // 3.4. Append it into the week
+  weekContainer.appendChild(newDay);
+
+  // 3.5. Wire up its toggle & add-task behavior
+  const toggleBtn = newDay.querySelector('.toggle-tasks');
+  const addTaskBtn = newDay.querySelector('.add-task');
+  const tasksUl   = newDay.querySelector('.tasks');
+
+  toggleBtn.addEventListener('click', () => {
+    // show/hide the <ul class="tasks">
+    tasksUl.style.display = tasksUl.style.display === 'block' ? 'none' : 'block';
+  });
+
+  addTaskBtn.addEventListener('click', () => {
+    const li = document.createElement('li');
+    li.setAttribute('contenteditable', 'true');
+    li.innerHTML = `New Task
+      <p class="description" contenteditable="true">Description…</p>`;
+    tasksUl.appendChild(li);
+  });
+}

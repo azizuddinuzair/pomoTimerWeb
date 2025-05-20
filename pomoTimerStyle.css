@@ -343,7 +343,7 @@ header {
   display: grid;
 
   /* 4 columns, each matching your .day width */
-  grid-template-columns: repeat(5, 220px);
+  grid-template-columns: repeat(7, 220px);
 
   /* let rows grow to fit content */
   grid-auto-rows: auto;

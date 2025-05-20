@@ -354,3 +354,34 @@ header {
   gap: 20px;
   align-items: start;
 }
+
+.task-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.task-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.task-checkbox {
+  margin-right: 8px;
+}
+
+.task-title {
+  font-weight: bold;
+  margin-bottom: 0;
+  outline: none;
+}
+
+.description {
+  font-size: 0.9em;
+  color: gray;
+  margin-left: 28px; /* aligns with title text after checkbox */
+  margin-top: 2px;   /* less space between title and description */
+  outline: none;
+}

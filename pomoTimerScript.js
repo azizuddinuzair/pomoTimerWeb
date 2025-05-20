@@ -83,8 +83,14 @@ addTaskButtons.forEach(button => {
   button.addEventListener('click', function() {
     let taskList = this.previousElementSibling;
     let newTask = document.createElement('li');
-    newTask.setAttribute('contenteditable', 'true');
-    newTask.innerHTML = 'New Task <p class="description" contenteditable="true">Description...</p>';
+    newTask.classList.add('task-item');
+    newTask.innerHTML = `
+      <div class="task-row">
+        <input type="checkbox" class="task-checkbox">
+        <span class="task-title" contenteditable="true">New Task</span>
+      </div>
+      <span class="description" contenteditable="true">Description...</span>
+    `;
     taskList.appendChild(newTask);
   });
 });

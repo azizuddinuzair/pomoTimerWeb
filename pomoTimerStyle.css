@@ -20,6 +20,10 @@ body {
     padding: 20px;
     width: 200px;
     height: 100vh;
+    top: 0;
+    z-index: 100;
+    left: 0;
+    position: fixed;
 }
 
 

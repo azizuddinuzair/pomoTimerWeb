@@ -100,7 +100,7 @@ header {
     align-self: flex-end;
     padding: 5px;
     cursor: pointer;
-    position: relative;
+    position: absolute;
 }
 .add-task {
   display: none;
@@ -451,3 +451,21 @@ header {
   outline: none;
 }
 
+.footer-close {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #e67e22;        /* match your accent color */
+}
+
+/* Optional hover/focus styles */
+.footer-close:hover,
+.footer-close:focus {
+  color: #c55a11;
+  outline: none;
+}

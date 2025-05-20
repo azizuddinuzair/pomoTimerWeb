@@ -12,6 +12,7 @@ const footerDayTitle = document.getElementById('footer-day-title');
 const footerTasksList = document.getElementById('footer-tasks-list');
 const footerAddTaskButton = document.getElementById('footer-add-task');
 let currentDayDiv = null; // Track which day is open in the footer
+const footerCloseButton   = document.getElementById('footer-close');
 
 // Show the Pomodoro modal when sidebar button is clicked
 pomodoroButton.addEventListener('click', () => {
@@ -213,3 +214,13 @@ footerAddTaskButton.addEventListener('click', function() {
 
 // Allow users to add new lists
 addListButton.addEventListener('click', ()=>{});
+
+footerCloseButton.addEventListener('click', () => {
+  // hide the footer
+  footer.style.display = 'none';
+
+  // clear any stale data
+  footerDayTitle.textContent    = '';
+  footerTasksList.innerHTML     = '';
+  currentDayDiv                 = null;
+});

@@ -70,7 +70,7 @@ header {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 165px;
+    width: 170px;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
@@ -360,7 +360,7 @@ header {
 
   /* 4 columns, each matching your .day width */
 
-  grid-template-columns: repeat(7, 165px);
+  grid-template-columns: repeat(7, 170px);
 
   /* let rows grow to fit content */
   grid-auto-rows: auto;

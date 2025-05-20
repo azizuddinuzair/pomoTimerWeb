@@ -55,6 +55,7 @@ header {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    position: relative;
 }
 
 .day {
@@ -313,7 +314,7 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
   /* new positioning */
-  position: absolute;
+  position: fixed;
   bottom: 20px;    /* distance from top of .calendar */
   right: 20px;  /* distance from right of .calendar */
   z-index: 10;  /* put it above other content */
@@ -324,4 +325,19 @@ header {
 }
 .add-list:active {
     opacity: 0.5
+}
+.week {
+  display: grid;
+
+  /* Define exactly 4 rows, each auto-sized by its content */
+  grid-template-rows: repeat(4, auto);
+
+  /* Place items column-by-column, then create new columns as needed */
+  grid-auto-flow: column;
+
+  /* Make each column at least 200px wide (or whatever your .day width is) */
+  grid-auto-columns: 200px;
+
+  /* Gutter between rows & columns */
+  gap: 20px;
 }

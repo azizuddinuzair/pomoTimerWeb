@@ -6,7 +6,7 @@ let pomodoroButton = document.getElementById('pomodoroButton');
 let modal = document.getElementById('pomodoroModal');
 let toggleButtons = document.querySelectorAll('.toggle-tasks');
 let addTaskButtons = document.querySelectorAll('.add-task');
-let addList = document.getElementById('add-list')
+const addListButton = document.querySelector('.add-list');
 
 // Show the Pomodoro modal when sidebar button is clicked
 pomodoroButton.addEventListener('click', () => {
@@ -94,16 +94,6 @@ window.addEventListener('click', (event) => {
   }
 });
 
-// Allow users to add new tasks
-addList.forEach(button => {
-  button.addEventListener('click', function() {
-    let taskList = this.previousElementSibling;
-    let newTask = document.createElement('li');
-    newTask.setAttribute('contenteditable', 'true');
-    newTask.innerHTML = 'New Task <p class="description" contenteditable="true">Description...</p>';
-    taskList.appendChild(newTask);
-  });
-});
 
 function createNewList() {
   // 3.1. Find the container where all your days live:
@@ -144,3 +134,6 @@ function createNewList() {
     tasksUl.appendChild(li);
   });
 }
+
+// Allow users to add new lists
+addListButton.addEventListener('click', createNewList);

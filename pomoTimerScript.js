@@ -7,6 +7,11 @@ let modal = document.getElementById('pomodoroModal');
 let toggleButtons = document.querySelectorAll('.toggle-tasks');
 let addTaskButtons = document.querySelectorAll('.add-task');
 const addListButton = document.querySelector('.add-list');
+const footer = document.getElementById('tasks-footer');
+const footerDayTitle = document.getElementById('footer-day-title');
+const footerTasksList = document.getElementById('footer-tasks-list');
+const footerAddTaskButton = document.getElementById('footer-add-task');
+let currentDayDiv = null; // Track which day is open in the footer
 
 // Show the Pomodoro modal when sidebar button is clicked
 pomodoroButton.addEventListener('click', () => {
@@ -71,10 +76,10 @@ toggleButtons.forEach(button => {
     const addBtn   = this.parentNode.querySelector('.add-task');
     const isOpen   = tasks.style.display === 'block';
 
-    // toggle the task list
-    tasks.style.display  = isOpen ? 'none' : 'block';
-    // toggle the Add-Task button
-    addBtn.style.display = isOpen ? 'none' : 'inline-block';
+    // // toggle the task list
+    // tasks.style.display  = isOpen ? 'none' : 'block';
+    // // toggle the Add-Task button
+    // addBtn.style.display = isOpen ? 'none' : 'inline-block';
   });
 });
 
@@ -147,6 +152,64 @@ function createNewList() {
     tasksUl.appendChild(li);
   });
 }
+
+// Toggle task visibility in footer when "Show Tasks" is clicked
+toggleButtons.forEach(button => {
+  button.addEventListener('click', function() {
+    const dayDiv = this.closest('.day');
+    const dayTitle = dayDiv.querySelector('h3').textContent;
+    const tasksUl = dayDiv.querySelector('.tasks');
+    const tasks = Array.from(tasksUl.children);
+
+    // If this day is already open in the footer, close it
+    if (footer.style.display === 'flex' && footerDayTitle.textContent === `Tasks for Day ${dayTitle}`) {
+      footer.style.display = 'none';
+      footerDayTitle.textContent = '';
+      footerTasksList.innerHTML = '';
+      currentDayDiv = null;
+      return;
+    }
+
+    // Otherwise, show the footer and populate with this day's tasks
+    footer.style.display = 'flex';
+    footerDayTitle.textContent = `Tasks for Day ${dayTitle}`;
+    footerTasksList.innerHTML = '';
+    currentDayDiv = dayDiv;
+
+    if (tasks.length === 0) {
+      const li = document.createElement('li');
+      li.textContent = 'No tasks for this day.';
+      footerTasksList.appendChild(li);
+    } else {
+      tasks.forEach(task => {
+        const li = document.createElement('li');
+        li.innerHTML = task.innerHTML;
+        footerTasksList.appendChild(li);
+      });
+    }
+  });
+});
+
+// Add Task from footer
+footerAddTaskButton.addEventListener('click', function() {
+  if (!currentDayDiv) return;
+  const tasksUl = currentDayDiv.querySelector('.tasks');
+  const newTask = document.createElement('li');
+  newTask.classList.add('task-item');
+  newTask.innerHTML = `
+    <div class="task-row">
+      <input type="checkbox" class="task-checkbox">
+      <span class="task-title" contenteditable="true">New Task</span>
+    </div>
+    <span class="description" contenteditable="true">Description...</span>
+  `;
+  tasksUl.appendChild(newTask);
+
+  // Also add to footer display
+  const li = document.createElement('li');
+  li.innerHTML = newTask.innerHTML;
+  footerTasksList.appendChild(li);
+});
 
 // Allow users to add new lists
 addListButton.addEventListener('click', ()=>{});

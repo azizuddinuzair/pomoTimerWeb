@@ -70,11 +70,12 @@ header {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 190px;
+    width: 165px;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
     font-family: 'Dancing Script', cursive; /* Cursive font for days */
+    position: relative; /* This is required */
 }
 
 .day h3 {
@@ -83,12 +84,15 @@ header {
 }
 
 .tasks {
-    display: none;
+    display: block;
+    pointer-events: none;
+    height: 0;
+    overflow: hidden;
     margin-top: 10px;
 }
 
 .add-task {
-    display: none; 
+    display: inline-block; 
     margin-top: 10px;
     background-color: #3498db;
     color: white;
@@ -102,6 +106,10 @@ header {
   display: none;
 }
 
+.day .add-task {
+  display: none !important;
+}
+
 .description {
     font-size: 0.9em;
     color: gray;
@@ -109,11 +117,17 @@ header {
 }
 
 .toggle-tasks {
-    background-color: #e67e22;
-    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
     border: none;
-    padding: 5px;
+    background: none;
     cursor: pointer;
+    z-index: 2; /* Make sure it's above the list content */
+    /* remove UA styling */
 }
 
 /* Modal for Pomodoro Timer */
@@ -345,7 +359,8 @@ header {
   display: grid;
 
   /* 4 columns, each matching your .day width */
-  grid-template-columns: repeat(7, 190px);
+
+  grid-template-columns: repeat(7, 165px);
 
   /* let rows grow to fit content */
   grid-auto-rows: auto;
@@ -387,3 +402,52 @@ header {
   margin-top: 2px;   /* less space between title and description */
   outline: none;
 }
+
+#tasks-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  background: #fffbe8;
+  border-top: 2px solid #e67e22;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+  padding: 16px 32px 16px 220px; /* leave space for sidebar */
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#footer-day-title {
+  margin: 0 0 8px 0;
+  font-family: 'Dancing Script', cursive;
+  color: #e67e22;
+}
+
+#footer-tasks-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+#footer-tasks-list li {
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  padding: 8px 16px;
+  min-width: 180px;
+  max-width: 320px;
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* 1) Remove any focus ring or outline from the hidden toggle button */
+.toggle-tasks:focus {
+  outline: none;
+}
+

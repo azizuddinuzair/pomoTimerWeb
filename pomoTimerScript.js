@@ -149,4 +149,4 @@ function createNewList() {
 }
 
 // Allow users to add new lists
-addListButton.addEventListener('click', createNewList);
+addListButton.addEventListener('click', ()=>{});

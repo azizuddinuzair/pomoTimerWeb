@@ -5,10 +5,12 @@
     box-sizing: border-box;
 }
 
-
 body {
     font-family: 'Comic Sans MS', sans-serif; /* Happier font for body */
-    background-color: #f9e3e3; /* Light pinkish background */
+    background-image: url('textured_pink.jpg');
+    background-size: cover; /* or 'repeat' if you want a tiled effect */
+    background-repeat: no-repeat; /* remove this if you want the image to repeat */
+    background-position: center center;
     color: #333;
     display: flex;
 }
@@ -65,10 +67,10 @@ header {
 
 .day {
     background-color: white;
-    padding: 15px;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 220px;
+    width: 190px;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
@@ -81,7 +83,10 @@ header {
 }
 
 .tasks {
-    display: none;
+    display: none !important;
+    pointer-events: none;
+    height: 0;
+    overflow: hidden;
     margin-top: 10px;
 }
 
@@ -98,6 +103,10 @@ header {
 }
 .add-task {
   display: none;
+}
+
+.day .add-task {
+  display: none !important;
 }
 
 .description {
@@ -343,7 +352,7 @@ header {
   display: grid;
 
   /* 4 columns, each matching your .day width */
-  grid-template-columns: repeat(7, 220px);
+  grid-template-columns: repeat(7, 190px);
 
   /* let rows grow to fit content */
   grid-auto-rows: auto;
@@ -351,7 +360,7 @@ header {
   /* fill rows left→right, then wrap down to the next row */
   grid-auto-flow: row;
 
-  gap: 20px;
+  gap: 5px;
   align-items: start;
 }
 
@@ -384,4 +393,47 @@ header {
   margin-left: 28px; /* aligns with title text after checkbox */
   margin-top: 2px;   /* less space between title and description */
   outline: none;
+}
+
+#tasks-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  background: #fffbe8;
+  border-top: 2px solid #e67e22;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+  padding: 16px 32px 16px 220px; /* leave space for sidebar */
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#footer-day-title {
+  margin: 0 0 8px 0;
+  font-family: 'Dancing Script', cursive;
+  color: #e67e22;
+}
+
+#footer-tasks-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+#footer-tasks-list li {
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  padding: 8px 16px;
+  min-width: 180px;
+  max-width: 320px;
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }

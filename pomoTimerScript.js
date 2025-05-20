@@ -76,10 +76,10 @@ toggleButtons.forEach(button => {
     const addBtn   = this.parentNode.querySelector('.add-task');
     const isOpen   = tasks.style.display === 'block';
 
-    // toggle the task list
-    tasks.style.display  = isOpen ? 'none' : 'block';
-    // toggle the Add-Task button
-    addBtn.style.display = isOpen ? 'none' : 'inline-block';
+    // // toggle the task list
+    // tasks.style.display  = isOpen ? 'none' : 'block';
+    // // toggle the Add-Task button
+    // addBtn.style.display = isOpen ? 'none' : 'inline-block';
   });
 });
 

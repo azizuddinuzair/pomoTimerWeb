@@ -5,10 +5,12 @@
     box-sizing: border-box;
 }
 
-
 body {
     font-family: 'Comic Sans MS', sans-serif; /* Happier font for body */
-    background-color: #f9e3e3; /* Light pinkish background */
+    background-image: url('textured_pink.jpg');
+    background-size: cover; /* or 'repeat' if you want a tiled effect */
+    background-repeat: no-repeat; /* remove this if you want the image to repeat */
+    background-position: center center;
     color: #333;
     display: flex;
 }

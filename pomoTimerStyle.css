@@ -301,8 +301,8 @@ header {
   /* make it round */
   border-radius: 50%;
   border: none;
-  background-color: #28a745;
-  color: #ff0000;
+  background-color: #ffffff;
+  color: #000000;
 
   /* center the “+” */
   font-size: calc(var(--btn-size) / 2);
@@ -312,4 +312,16 @@ header {
   /* add a little depth */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
+  /* new positioning */
+  position: absolute;
+  bottom: 20px;    /* distance from top of .calendar */
+  right: 20px;  /* distance from right of .calendar */
+  z-index: 10;  /* put it above other content */
+
+}
+.add-list:hover {
+    opacity: 0.7
+}
+.add-list:active {
+    opacity: 0.5
 }

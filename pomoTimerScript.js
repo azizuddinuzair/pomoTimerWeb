@@ -6,6 +6,7 @@ let pomodoroButton = document.getElementById('pomodoroButton');
 let modal = document.getElementById('pomodoroModal');
 let toggleButtons = document.querySelectorAll('.toggle-tasks');
 let addTaskButtons = document.querySelectorAll('.add-task');
+let addlist = document.getElementById('add-list')
 
 // Show the Pomodoro modal when sidebar button is clicked
 pomodoroButton.addEventListener('click', () => {
@@ -91,4 +92,15 @@ window.addEventListener('click', (event) => {
     modal.style.display = 'none';
     resetTimer(); // Reset timer when modal is closed
   }
+});
+
+// Allow users to add new tasks
+addTaskButtons.forEach(button => {
+  button.addEventListener('click', function() {
+    let taskList = this.previousElementSibling;
+    let newTask = document.createElement('li');
+    newTask.setAttribute('contenteditable', 'true');
+    newTask.innerHTML = 'New Task <p class="description" contenteditable="true">Description...</p>';
+    taskList.appendChild(newTask);
+  });
 });

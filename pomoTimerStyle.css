@@ -359,6 +359,7 @@ header {
   display: grid;
 
   /* 4 columns, each matching your .day width */
+
   grid-template-columns: repeat(7, 165px);
 
   /* let rows grow to fit content */

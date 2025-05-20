@@ -47,6 +47,7 @@ body {
 .main-content {
     flex-grow: 1;
     padding: 20px;
+    margin-left: 200px;  /* same as .sidebar width */
 }
 
 header {
@@ -67,7 +68,9 @@ header {
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 200px;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
     margin-bottom: 20px;
     font-family: 'Dancing Script', cursive; /* Cursive font for days */
 }
@@ -83,12 +86,18 @@ header {
 }
 
 .add-task {
+    display: none; 
     margin-top: 10px;
     background-color: #3498db;
     color: white;
     border: none;
+    align-self: flex-end;
     padding: 5px;
     cursor: pointer;
+    position: relative;
+}
+.add-task {
+  display: none;
 }
 
 .description {
@@ -333,15 +342,15 @@ header {
 .week {
   display: grid;
 
-  /* Define exactly 4 rows, each auto-sized by its content */
-  grid-template-rows: repeat(4, auto);
+  /* 4 columns, each matching your .day width */
+  grid-template-columns: repeat(5, 220px);
 
-  /* Place items column-by-column, then create new columns as needed */
-  grid-auto-flow: column;
+  /* let rows grow to fit content */
+  grid-auto-rows: auto;
 
-  /* Make each column at least 200px wide (or whatever your .day width is) */
-  grid-auto-columns: 200px;
+  /* fill rows left→right, then wrap down to the next row */
+  grid-auto-flow: row;
 
-  /* Gutter between rows & columns */
   gap: 20px;
+  align-items: start;
 }

@@ -67,8 +67,14 @@ function resetTimer() {
 // Toggle task visibility when "Show Tasks" is clicked
 toggleButtons.forEach(button => {
   button.addEventListener('click', function() {
-    let tasks = this.nextElementSibling;
-    tasks.style.display = tasks.style.display === 'block' ? 'none' : 'block';
+    const tasks    = this.nextElementSibling;
+    const addBtn   = this.parentNode.querySelector('.add-task');
+    const isOpen   = tasks.style.display === 'block';
+
+    // toggle the task list
+    tasks.style.display  = isOpen ? 'none' : 'block';
+    // toggle the Add-Task button
+    addBtn.style.display = isOpen ? 'none' : 'inline-block';
   });
 });
 
@@ -120,6 +126,7 @@ function createNewList() {
   const toggleBtn = newDay.querySelector('.toggle-tasks');
   const addTaskBtn = newDay.querySelector('.add-task');
   const tasksUl   = newDay.querySelector('.tasks');
+  addTaskBtn.style.display = 'none';
 
   toggleBtn.addEventListener('click', () => {
     // show/hide the <ul class="tasks">

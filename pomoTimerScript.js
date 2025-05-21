@@ -13,6 +13,7 @@ const footerTasksList = document.getElementById('footer-tasks-list');
 const footerAddTaskButton = document.getElementById('footer-add-task');
 let currentDayDiv = null; // Track which day is open in the footer
 const footerCloseButton   = document.getElementById('footer-close');
+const confettiWrapper = document.querySelector('.confetti-wrapper');
 
 // Show the Pomodoro modal when sidebar button is clicked
 pomodoroButton.addEventListener('click', () => {
@@ -113,47 +114,6 @@ window.addEventListener('click', (event) => {
 });
 
 
-function createNewList() {
-  // 3.1. Find the container where all your days live:
-  const weekContainer = document.querySelector('.week');
-
-  // 3.2. Create a new <div class="day">...</div>
-  const newDay = document.createElement('div');
-  newDay.classList.add('day');
-  // Optionally give it a unique ID or data-attribute if you need to reference it later:
-  newDay.id = 'list'; 
-
-  // 3.3. Fill it with the same HTML you use for Monday/Tuesday
-  newDay.innerHTML = `
-    <h3>List</h3>
-    <button class="toggle-tasks">Show Tasks</button>
-    <ul class="tasks"></ul>
-    <button class="add-task">Add Task</button>
-  `;
-
-  // 3.4. Append it into the week
-  weekContainer.appendChild(newDay);
-
-  // 3.5. Wire up its toggle & add-task behavior
-  const toggleBtn = newDay.querySelector('.toggle-tasks');
-  const addTaskBtn = newDay.querySelector('.add-task');
-  const tasksUl   = newDay.querySelector('.tasks');
-  addTaskBtn.style.display = 'none';
-
-  toggleBtn.addEventListener('click', () => {
-    // show/hide the <ul class="tasks">
-    tasksUl.style.display = tasksUl.style.display === 'block' ? 'none' : 'block';
-  });
-
-  addTaskBtn.addEventListener('click', () => {
-    const li = document.createElement('li');
-    li.setAttribute('contenteditable', 'true');
-    li.innerHTML = `New Task
-      <p class="description" contenteditable="true">Description…</p>`;
-    tasksUl.appendChild(li);
-  });
-}
-
 // Toggle task visibility in footer when "Show Tasks" is clicked
 toggleButtons.forEach(button => {
   button.addEventListener('click', function() {
@@ -212,8 +172,19 @@ footerAddTaskButton.addEventListener('click', function() {
   footerTasksList.appendChild(li);
 });
 
+let confetti_launched = false;
+
 // Allow users to add new lists
-addListButton.addEventListener('click', ()=>{});
+addListButton.addEventListener('click', ()=>{
+  if (confetti_launched == false) {
+    confetti_launched = true;
+    launchConfetti();
+    setTimeout(() => {
+      confettiWrapper.innerHTML = '';
+      confetti_launched = false;
+    }, 10000);
+  }
+});
 
 footerCloseButton.addEventListener('click', () => {
   // hide the footer
@@ -224,3 +195,21 @@ footerCloseButton.addEventListener('click', () => {
   footerTasksList.innerHTML     = '';
   currentDayDiv                 = null;
 });
+
+// Generate confetti
+// lwk timer should go here because we want to stop spawning confetti but let it fall
+function launchConfetti() {
+  confettiWrapper.innerHTML = ''; // Clear previous confetti
+  for (let i = 0; i < 50; i++) {
+    const confetti = document.createElement('div');
+    confetti.classList.add('confetti-piece');
+    confetti.style.left = `${Math.random() * 100}%`;
+    confetti.style.setProperty('--fall-duration', `${Math.random() * 3 + 3}s`);
+    confetti.style.setProperty('--confetti-color', getRandomColor());
+    confettiWrapper.appendChild(confetti);
+  }
+}
+function getRandomColor() {
+  const colors = ['#ff6347', '#ffa500', '#32cd32', '#1e90ff', '#ff69b4'];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
